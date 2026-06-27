@@ -5,10 +5,35 @@ const openButtons = document.querySelectorAll("[data-open-contact]");
 const sections = [...document.querySelectorAll("[data-section]")];
 const dots = [...document.querySelectorAll(".snap-dots a")];
 const header = document.querySelector(".site-header");
+const root = document.documentElement;
+const revealElements = [...document.querySelectorAll(".reveal")];
+const mobileViewport = window.matchMedia("(max-width: 820px)");
+const coarsePointer = window.matchMedia("(pointer: coarse)");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if (window.lucide) {
   window.lucide.createIcons();
+}
+
+function setActiveSection(index) {
+  if (index < 0) return;
+  sections.forEach((section, sectionIndex) => {
+    section.classList.toggle("is-current", sectionIndex === index);
+  });
+  dots.forEach((dot, dotIndex) => dot.classList.toggle("is-active", dotIndex === index));
+}
+
+setActiveSection(0);
+
+function syncMobileMotion() {
+  document.body.classList.toggle("has-mobile-motion", mobileViewport.matches && !prefersReducedMotion);
+}
+
+syncMobileMotion();
+if (mobileViewport.addEventListener) {
+  mobileViewport.addEventListener("change", syncMobileMotion);
+} else {
+  mobileViewport.addListener(syncMobileMotion);
 }
 
 document.querySelectorAll("[data-scroll-to]").forEach((link) => {
@@ -52,14 +77,21 @@ const revealObserver = new IntersectionObserver(
   { root: shell, threshold: 0.2 }
 );
 
-document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+sections.forEach((section) => {
+  [...section.querySelectorAll(".reveal")].forEach((element, index) => {
+    element.style.setProperty("--reveal-delay", `${Math.min(index * 90, 360)}ms`);
+  });
+});
+
+revealElements.forEach((element) => revealObserver.observe(element));
 
 const sectionObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       const index = sections.indexOf(entry.target);
-      dots.forEach((dot, dotIndex) => dot.classList.toggle("is-active", dotIndex === index));
+      if (index === -1) return;
+      setActiveSection(index);
     });
   },
   { root: shell, threshold: 0.55 }
@@ -67,13 +99,34 @@ const sectionObserver = new IntersectionObserver(
 
 sections.forEach((section) => sectionObserver.observe(section));
 
+let scrollFrame = 0;
+
+function updateScrollState() {
+  const maxScroll = Math.max(shell.scrollHeight - shell.clientHeight, 1);
+  const progress = shell.scrollTop / maxScroll;
+  const shellRect = shell.getBoundingClientRect();
+  const anchorY = shellRect.top + shell.clientHeight * 0.42;
+  const activeIndex = sections.findIndex((section) => {
+    const rect = section.getBoundingClientRect();
+    return rect.top <= anchorY && rect.bottom >= anchorY;
+  });
+
+  header.classList.toggle("is-glass", shell.scrollTop > 20);
+  root.style.setProperty("--mobile-progress", progress.toFixed(4));
+  setActiveSection(activeIndex);
+  scrollFrame = 0;
+}
+
 shell.addEventListener(
   "scroll",
   () => {
-    header.classList.toggle("is-glass", shell.scrollTop > 20);
+    if (scrollFrame) return;
+    scrollFrame = requestAnimationFrame(updateScrollState);
   },
   { passive: true }
 );
+
+updateScrollState();
 
 const counterObserver = new IntersectionObserver(
   (entries) => {
@@ -134,6 +187,51 @@ if (!prefersReducedMotion && window.matchMedia("(pointer: fine)").matches) {
   );
 }
 
+if (!prefersReducedMotion && coarsePointer.matches) {
+  const pressableElements = document.querySelectorAll(
+    ".job-card, .reward-card, .language-grid span, .contact-link, .ghost-button, .phone-button"
+  );
+  const heroStage = document.querySelector(".hero-stage");
+
+  pressableElements.forEach((element) => {
+    element.addEventListener("pointerdown", () => element.classList.add("is-pressed"));
+    ["pointerup", "pointercancel", "pointerleave"].forEach((eventName) => {
+      element.addEventListener(eventName, () => element.classList.remove("is-pressed"));
+    });
+  });
+
+  function setMobileParallax(clientX, clientY) {
+    if (!heroStage || !mobileViewport.matches) return;
+    const rect = heroStage.getBoundingClientRect();
+    const x = ((clientX - rect.left) / rect.width - 0.5) * 10;
+    const y = ((clientY - rect.top) / rect.height - 0.5) * 8;
+    root.style.setProperty("--mobile-parallax-x", `${x.toFixed(2)}px`);
+    root.style.setProperty("--mobile-parallax-y", `${y.toFixed(2)}px`);
+    root.style.setProperty("--mobile-phone-x", `${(-x * 0.65).toFixed(2)}px`);
+    root.style.setProperty("--mobile-phone-y", `${(-y * 0.75).toFixed(2)}px`);
+  }
+
+  function resetMobileParallax() {
+    root.style.setProperty("--mobile-parallax-x", "0px");
+    root.style.setProperty("--mobile-parallax-y", "0px");
+    root.style.setProperty("--mobile-phone-x", "0px");
+    root.style.setProperty("--mobile-phone-y", "0px");
+  }
+
+  shell.addEventListener(
+    "pointermove",
+    (event) => {
+      if (event.pointerType === "mouse" || !heroStage) return;
+      const rect = heroStage.getBoundingClientRect();
+      if (event.clientY < rect.top || event.clientY > rect.bottom) return;
+      setMobileParallax(event.clientX, event.clientY);
+    },
+    { passive: true }
+  );
+  shell.addEventListener("pointerleave", resetMobileParallax, { passive: true });
+  shell.addEventListener("pointercancel", resetMobileParallax, { passive: true });
+}
+
 const canvas = document.querySelector("#marketCanvas");
 const context = canvas?.getContext("2d");
 let width = 0;
@@ -167,6 +265,16 @@ function drawMarket(time = 0) {
   gradient.addColorStop(1, "rgba(220, 200, 144, 0.03)");
   context.fillStyle = gradient;
   context.fillRect(0, 0, width, height);
+
+  if (mobileViewport.matches) {
+    const scanX = (time * 0.04) % (width + 160) - 80;
+    const scanGradient = context.createLinearGradient(scanX - 80, 0, scanX + 80, 0);
+    scanGradient.addColorStop(0, "rgba(89, 214, 255, 0)");
+    scanGradient.addColorStop(0.48, "rgba(89, 214, 255, 0.055)");
+    scanGradient.addColorStop(1, "rgba(134, 239, 75, 0)");
+    context.fillStyle = scanGradient;
+    context.fillRect(scanX - 80, 0, 160, height);
+  }
 
   context.save();
   context.translate(width * 0.48, height * 0.1);
