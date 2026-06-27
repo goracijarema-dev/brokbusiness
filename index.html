@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Брок Бізнес - інформаційні послуги у сфері бізнес-аналітики, кар'єра, реферальна система та контакти."
+    />
+    <title>Брок Бізнес - аналітика, інформація, можливість</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="Головна навігація">
+      <a class="brand" href="#hero" data-scroll-to="hero" aria-label="Брок Бізнес">
+        <span>БРОК</span><span>БІЗНЕС</span>
+      </a>
+
+      <nav class="top-nav" aria-label="Розділи сайту">
+        <a href="#careers" data-scroll-to="careers">Кар'єра</a>
+        <a href="#referral" data-scroll-to="referral">Реферали</a>
+        <a href="#contacts" data-scroll-to="contacts">Контакти</a>
+      </nav>
+
+      <button class="ghost-button" type="button" data-open-contact>
+        <span>Зв'язатися з нами</span>
+        <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+      </button>
+    </header>
+
+    <nav class="snap-dots" aria-label="Швидка навігація між блоками">
+      <a href="#hero" data-scroll-to="hero" aria-label="Перший блок"></a>
+      <a href="#careers" data-scroll-to="careers" aria-label="Другий блок"></a>
+      <a href="#referral" data-scroll-to="referral" aria-label="Третій блок"></a>
+      <a href="#contacts" data-scroll-to="contacts" aria-label="Четвертий блок"></a>
+    </nav>
+
+    <main class="snap-shell" id="snapShell">
+      <section class="panel hero-section" id="hero" data-section>
+        <canvas id="marketCanvas" class="market-canvas" aria-hidden="true"></canvas>
+        <div class="section-frame hero-frame">
+          <div class="hero-copy reveal">
+            <p class="eyebrow">Інформаційні послуги в сфері бізнес аналітики</p>
+            <h1>
+              Аналітика.<br />
+              Інформація.<br />
+              <span>Ваша можливість.</span>
+            </h1>
+            <p>
+              БРОК БІЗНЕС - компанія, що надає інформаційні послуги у сфері
+              бізнес аналітики. Ми допомагаємо клієнтам примножувати капітал,
+              використовуючи можливості на фондовому ринку, криптовалютах,
+              сировині та валюті.
+            </p>
+            <p>
+              Завдяки глибокому аналізу нашого аналітичного відділу, ми надаємо
+              чітку інформацію: як, на чому і де можна заробити саме зараз.
+            </p>
+          </div>
+
+          <div class="hero-stage reveal" aria-hidden="true">
+            <div class="terminal-panel">
+              <div class="terminal-head">
+                <span class="mini-logo">БРОК<span>БІЗНЕС</span></span>
+                <span class="live-pill">Ринки</span>
+              </div>
+              <div class="market-tabs">
+                <span>Акції</span>
+                <span>Криптовалюта</span>
+                <span>Сировина</span>
+                <span>Валюта</span>
+              </div>
+              <div class="recommendation">
+                <small>Рекомендація: Купити</small>
+                <strong>Apple Inc. (AAPL)</strong>
+                <div class="price-line">
+                  <span>175.42 <em>USD</em></span>
+                  <b>+2.35 (1.36%)</b>
+                </div>
+              </div>
+              <div class="chart-wrap">
+                <svg viewBox="0 0 520 240" role="img" aria-label="Графік росту активу">
+                  <defs>
+                    <linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#86ef4b" stop-opacity="0.38" />
+                      <stop offset="100%" stop-color="#86ef4b" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    class="chart-area"
+                    d="M12 205 C45 190, 65 160, 94 170 C123 182, 145 126, 174 134 C205 143, 215 95, 247 104 C280 112, 290 78, 320 87 C350 96, 372 58, 402 61 C435 64, 452 40, 508 32 L508 224 L12 224 Z"
+                  ></path>
+                  <path
+                    class="chart-line"
+                    d="M12 205 C45 190, 65 160, 94 170 C123 182, 145 126, 174 134 C205 143, 215 95, 247 104 C280 112, 290 78, 320 87 C350 96, 372 58, 402 61 C435 64, 452 40, 508 32"
+                  ></path>
+                </svg>
+                <div class="time-row">
+                  <span>1Д</span>
+                  <span>1Т</span>
+                  <span>1М</span>
+                  <span>3М</span>
+                  <span>1Р</span>
+                  <span>ВСІ</span>
+                </div>
+              </div>
+              <div class="analysis-note">
+                <strong>Аналітичний огляд</strong>
+                <span>Сильний висхідний тренд. Очікується подальше зростання в короткостроковій перспективі.</span>
+              </div>
+            </div>
+
+            <div class="phone-mockup">
+              <div class="phone-bar">
+                <span>9:41</span>
+                <span></span>
+              </div>
+              <h3>Інсайти</h3>
+              <div class="insight-card">
+                <small>Щоденний прогноз</small>
+                <b>Актуальні огляди ринку</b>
+                <div class="bar-spark">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="watch-list">
+                <div><span>NVDA</span><b>+2.45%</b></div>
+                <div><span>ETH/USD</span><b>+1.32%</b></div>
+                <div><span>BRENT</span><b class="danger">-0.79%</b></div>
+                <div><span>USD/JPY</span><b>+0.15%</b></div>
+              </div>
+              <button class="phone-button" type="button" tabindex="-1">Усі можливості</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel careers-section" id="careers" data-section>
+        <div class="section-frame">
+          <div class="section-title reveal">
+            <p class="eyebrow">Кар'єра в Брок Бізнес</p>
+            <h2>У нас відкриті позиції</h2>
+          </div>
+
+          <div class="jobs-grid">
+            <article class="job-card reveal tilt-card" data-tilt>
+              <i data-lucide="chart-no-axes-combined" aria-hidden="true"></i>
+              <h3>Аналітик</h3>
+              <p>Проведення ринкового аналізу та підготовка інвестиційних оглядів.</p>
+            </article>
+            <article class="job-card reveal tilt-card" data-tilt>
+              <i data-lucide="messages-square" aria-hidden="true"></i>
+              <h3>Менеджер з комунікації</h3>
+              <p>Побудова довгострокових відносин з клієнтами та партнерами.</p>
+            </article>
+            <article class="job-card reveal tilt-card" data-tilt>
+              <i data-lucide="megaphone" aria-hidden="true"></i>
+              <h3>SMM спеціаліст</h3>
+              <p>Створення контенту та просування бренду в соціальних мережах.</p>
+            </article>
+            <article class="job-card reveal tilt-card" data-tilt>
+              <i data-lucide="user-round" aria-hidden="true"></i>
+              <h3>Менеджер з утримання клієнтів</h3>
+              <p>Підтримка клієнтів та забезпечення їх високого рівня задоволеності.</p>
+            </article>
+            <article class="job-card reveal tilt-card" data-tilt>
+              <i data-lucide="graduation-cap" aria-hidden="true"></i>
+              <h3>Бізнес тренер</h3>
+              <p>Навчання клієнтів та партнерів ефективним інвестиційним стратегіям.</p>
+            </article>
+            <article class="job-card reveal tilt-card" data-tilt>
+              <i data-lucide="briefcase-business" aria-hidden="true"></i>
+              <h3>Адмін позиції</h3>
+              <p>Забезпечення ефективної роботи компанії та внутрішніх процесів.</p>
+            </article>
+          </div>
+
+          <div class="salary-strip reveal">
+            <div class="salary-copy">
+              <i data-lucide="wallet-cards" aria-hidden="true"></i>
+              <div>
+                <span>Середня заробітна плата наших агентів становить</span>
+                <strong>понад <b data-counter="1500">0</b>$</strong>
+              </div>
+            </div>
+            <div class="salary-chart" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="salary-number">
+              <i data-lucide="trending-up" aria-hidden="true"></i>
+              <strong><b data-counter="1500">0</b>$+</strong>
+              <span>середній дохід агента</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel referral-section" id="referral" data-section>
+        <div class="section-frame referral-frame">
+          <div class="referral-copy reveal">
+            <p class="eyebrow">Реферальна система</p>
+            <h2>Розвивай команду - отримуй більше!</h2>
+            <div class="benefit-list">
+              <div>
+                <i data-lucide="users-round" aria-hidden="true"></i>
+                <p>
+                  <strong>Наш штат активно збільшується</strong>
+                  Ми постійно відкриваємо нові напрямки та шукаємо найкращих спеціалістів.
+                </p>
+              </div>
+              <div>
+                <i data-lucide="gift" aria-hidden="true"></i>
+                <p>
+                  <strong>Приведи друга - отримай винагороду</strong>
+                  Якщо у вас є друзі, знайомі або колеги, які володіють мовами - запросіть їх до нашої команди.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="languages-panel reveal">
+            <h3>Мови, які нам важливі:</h3>
+            <div class="language-grid">
+              <span><b>🇨🇿</b> Чеська</span>
+              <span><b>🇬🇧</b> Англійська</span>
+              <span><b>🇩🇪</b> Німецька</span>
+              <span><b>🇵🇱</b> Польська</span>
+              <span><b>🇮🇹</b> Італійська</span>
+            </div>
+            <p>
+              Зв'яжіться з рекрутером, який вам телефонував, та повідомте про кандидата.
+            </p>
+            <div class="reward-card tilt-card" data-tilt>
+              <i data-lucide="badge-dollar-sign" aria-hidden="true"></i>
+              <span>За кожного кандидата компанія готова заплатити за носія</span>
+              <strong><b data-counter="200">0</b>$ <small>та вище</small></strong>
+            </div>
+          </div>
+
+          <div class="network-visual reveal" aria-hidden="true">
+            <div class="globe-grid"></div>
+            <div class="people-cluster">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="orbit one"></div>
+            <div class="orbit two"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel contacts-section" id="contacts" data-section>
+        <div class="section-frame contacts-frame">
+          <div class="section-title reveal">
+            <p class="eyebrow">4</p>
+            <h2>Інформація про компанію</h2>
+          </div>
+
+          <div class="contacts-grid">
+            <article class="info-column reveal">
+              <i data-lucide="building-2" aria-hidden="true"></i>
+              <h3>Інформація про компанію</h3>
+              <p>
+                Наша компанія надає інформаційно-аналітичні послуги виключно на
+                ринках країн Європи, дотримуючись високих стандартів якості та
+                конфіденційності.
+              </p>
+              <p>
+                Наша діяльність орієнтована виключно на ринки країн Європи.
+                З огляду на поточні операційні особливості компанії, ми наразі
+                не маємо можливості надавати послуги громадянам України.
+              </p>
+            </article>
+
+            <article class="info-column reveal">
+              <i data-lucide="file-text" aria-hidden="true"></i>
+              <h3>Реквізити компанії</h3>
+              <ul>
+                <li><strong>Код ЄДРПОУ</strong> 36000822</li>
+                <li><strong>Головний офіс</strong> Україна, 01032, м. Київ, вул. Саксаганського, будинок 115А</li>
+                <li><strong>Представництва</strong> м. Львів, м. Івано-Франківськ</li>
+              </ul>
+            </article>
+
+            <article class="info-column contact-column reveal">
+              <i data-lucide="send" aria-hidden="true"></i>
+              <h3>Зв'язатися з нами</h3>
+              <a class="contact-link telegram" href="https://t.me/brokbusiness" target="_blank" rel="noopener">
+                <i data-lucide="send" aria-hidden="true"></i>
+                <span>
+                  Telegram
+                  <strong>@brokbusiness</strong>
+                </span>
+              </a>
+              <a class="contact-link phone" href="tel:+380973515742">
+                <i data-lucide="phone" aria-hidden="true"></i>
+                <span>
+                  Телефон
+                  <strong>+38 (097) 351 57 42</strong>
+                </span>
+              </a>
+              <p>Наша команда завжди на зв'язку та готова відповісти на ваші запитання.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="contact-modal" id="contactModal" aria-hidden="true">
+      <div class="modal-backdrop" data-close-contact></div>
+      <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+        <button class="close-button" type="button" data-close-contact aria-label="Закрити контакти">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+        <p class="eyebrow">Контакти Брок Бізнес</p>
+        <h2 id="contactTitle">Зв'яжіться з нами</h2>
+        <p>
+          Оберіть зручний спосіб: Telegram відкриє чат з менеджером, а номер телефону
+          одразу запропонує дзвінок.
+        </p>
+        <div class="modal-actions">
+          <a class="contact-link telegram" href="https://t.me/brokbusiness" target="_blank" rel="noopener">
+            <i data-lucide="send" aria-hidden="true"></i>
+            <span>
+              Telegram
+              <strong>@brokbusiness</strong>
+            </span>
+          </a>
+          <a class="contact-link phone" href="tel:+380973515742">
+            <i data-lucide="phone-call" aria-hidden="true"></i>
+            <span>
+              Подзвонити
+              <strong>+38 (097) 351 57 42</strong>
+            </span>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <script src="./script.js"></script>
+    <script
+      src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"
+      async
+      onload="window.lucide && window.lucide.createIcons()"
+    ></script>
+  </body>
+</html>
